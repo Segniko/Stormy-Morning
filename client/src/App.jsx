@@ -1,0 +1,46 @@
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import Footer from './components/Footer';
+import Navbar from './components/Navbar';
+import ScrollToTop from './components/ScrollToTop';
+import AboutPage from './pages/AboutPage';
+import AdminDashboardPage from './pages/AdminDashboardPage';
+import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
+import CollectionsPage from './pages/CollectionsPage';
+import ContactPage from './pages/ContactPage';
+import DashboardPage from './pages/DashboardPage';
+import LandingPage from './pages/LandingPage';
+import LoginPage from './pages/LoginPage';
+import ProductDetailPage from './pages/ProductDetailPage';
+import ProductListingPage from './pages/ProductListingPage';
+import RegisterPage from './pages/RegisterPage';
+
+function App() {
+  return (
+    <Router>
+      <ScrollToTop />
+      <div className="min-h-screen bg-[#F0F4F8] flex flex-col">
+        <Navbar />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/products" element={<ProductListingPage />} />
+            <Route path="/product/:id" element={<ProductDetailPage />} />
+            <Route path="/profile" element={<DashboardPage />} />
+            <Route path="/@admin-portal" element={<AdminDashboardPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/collections" element={<CollectionsPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/cart" element={<CartPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
+  );
+}
+
+export default App;
