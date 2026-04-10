@@ -15,10 +15,10 @@ const importData = async () => {
 
         await Product.insertMany(products);
 
-        console.log('Data Imported! 🚀');
+        console.log('Data Imported!');
         process.exit();
     } catch (error) {
-        console.error(`Error: ${error.message} ❌`);
+        console.error(`Error: ${error.message}`);
         process.exit(1);
     }
 };
@@ -28,10 +28,10 @@ const destroyData = async () => {
         await Order.deleteMany();
         await Product.deleteMany();
 
-        console.log('Data Destroyed! 🧨');
+        console.log('Data Destroyed!');
         process.exit();
     } catch (error) {
-        console.error(`Error: ${error.message} ❌`);
+        console.error(`Error: ${error.message}`);
         process.exit(1);
     }
 };

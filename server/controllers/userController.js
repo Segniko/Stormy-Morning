@@ -1,9 +1,9 @@
 import User from '../models/userModel.js';
 import generateToken from '../utils/generateToken.js';
 
-// @desc    Register user
-// @route   POST /api/users
-// @access  Public
+// Register user
+// POST /api/users
+// @access Public
 const registerUser = async (req, res, next) => {
     try {
         const { name, email, password } = req.body;
@@ -39,9 +39,9 @@ const registerUser = async (req, res, next) => {
     }
 };
 
-// @desc    Auth user & get token
-// @route   POST /api/users/login
-// @access  Public
+// Auth user & get token
+// POST /api/users/login
+// @access Public
 const authUser = async (req, res, next) => {
     try {
         const { email, password } = req.body;
@@ -66,9 +66,9 @@ const authUser = async (req, res, next) => {
     }
 };
 
-// @desc    Logout user / clear cookie
-// @route   POST /api/users/logout
-// @access  Public
+// Logout user / clear cookie
+// POST /api/users/logout
+// @access Public
 const logoutUser = (req, res) => {
     res.cookie('jwt', '', {
         httpOnly: true,
@@ -77,9 +77,9 @@ const logoutUser = (req, res) => {
     res.status(200).json({ message: 'Logged out successfully' });
 };
 
-// @desc    Get user profile
-// @route   GET /api/users/profile
-// @access  Private
+// Get user profile
+// GET /api/users/profile
+// @access Private
 const getUserProfile = async (req, res, next) => {
     try {
         const user = await User.findById(req.user._id);

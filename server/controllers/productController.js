@@ -1,8 +1,8 @@
 import Product from '../models/productModel.js';
 
-// @desc    Fetch all products
-// @route   GET /api/products
-// @access  Public
+// Fetch all products
+// GET /api/products
+// @access Public
 const getProducts = async (req, res, next) => {
     try {
         const category = req.query.category;
@@ -15,9 +15,9 @@ const getProducts = async (req, res, next) => {
     }
 };
 
-// @desc    Fetch single product (Dual-Spec)
-// @route   GET /api/products/:id
-// @access  Public
+// Fetch single product (Dual-Spec)
+// GET /api/products/:id
+// @access Public
 const getProductById = async (req, res, next) => {
     try {
         const product = await Product.findById(req.params.id);
@@ -33,9 +33,9 @@ const getProductById = async (req, res, next) => {
     }
 };
 
-// @desc    Create product
-// @route   POST /api/products
-// @access  Private/Admin
+// Create product
+// POST /api/products
+// @access Private/Admin
 const createProduct = async (req, res, next) => {
     try {
         const {

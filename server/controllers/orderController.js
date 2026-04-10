@@ -1,8 +1,8 @@
 import Order from '../models/orderModel.js';
 
-// @desc    Create new order
-// @route   POST /api/orders
-// @access  Private
+// Create new order
+// POST /api/orders
+// @access Private
 const addOrderItems = async (req, res, next) => {
     try {
         const {
@@ -41,9 +41,9 @@ const addOrderItems = async (req, res, next) => {
     }
 };
 
-// @desc    Get logged in user orders
-// @route   GET /api/orders/mine
-// @access  Private
+// Get logged in user orders
+// GET /api/orders/mine
+// @access Private
 const getMyOrders = async (req, res, next) => {
     try {
         const orders = await Order.find({ user: req.user._id })
@@ -55,9 +55,9 @@ const getMyOrders = async (req, res, next) => {
     }
 };
 
-// @desc    Get order by ID
-// @route   GET /api/orders/:id
-// @access  Private
+// Get order by ID
+// GET /api/orders/:id
+// @access Private
 const getOrderById = async (req, res, next) => {
     try {
         const order = await Order.findById(req.params.id)
@@ -75,9 +75,9 @@ const getOrderById = async (req, res, next) => {
     }
 };
 
-// @desc    Get all orders
-// @route   GET /api/orders
-// @access  Private/Admin
+// Get all orders
+// GET /api/orders
+// @access Private/Admin
 const getAllOrders = async (req, res, next) => {
     try {
         const orders = await Order.find({})
@@ -90,9 +90,9 @@ const getAllOrders = async (req, res, next) => {
     }
 };
 
-// @desc    Update order status
-// @route   PUT /api/orders/:id/status
-// @access  Private/Admin
+// Update order status
+// PUT /api/orders/:id/status
+// @access Private/Admin
 const updateOrderStatus = async (req, res, next) => {
     try {
         const order = await Order.findById(req.params.id);
