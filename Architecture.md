@@ -4,13 +4,11 @@
 1. Architecture & System Design
 - System Layout: Designing a decoupled architecture (Frontend, Backend, Database) to allow independent scaling.
 
-- Database Schema: Designing the MongoDB collections for Products (handling polymorphic Tech/Fashion attributes), Users, Orders, and Carts.
+- Database Schema: Designing the MongoDB collections for Products (handling polymorphic Tech/Fashion attributes), Users, Orders and Carts.
 
 - Security Architecture: Planning JWT based authentication, Role Based Access Control, and CORS configurations.
 
 - Integration Planning: Having a simple payment gateway integration.
-
-![alt text](download.jpg)
 
 2. Design & User Experience (UX)
 - Component Architecture: Designing a library of reusable UI components using the Stormy Morning palette.
