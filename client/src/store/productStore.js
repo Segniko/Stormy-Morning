@@ -2,11 +2,13 @@ import axios from 'axios';
 import { create } from 'zustand';
 
 const useProductStore = create((set) => ({
-    products: [],
-    product: null,
-    loading: false,
-    error: null,
+    // State
+    products: [],    // List of all products
+    product: null,   // Single product details
+    loading: false,  // Fetching status
+    error: null,     // Error message
 
+    // Category[String] - Fetch products by category or all products
     fetchProducts: async (category = '') => {
         set({ loading: true, error: null });
         try {
@@ -21,6 +23,7 @@ const useProductStore = create((set) => ({
         }
     },
 
+    // Id[String] - Fetch a single product by ID
     fetchProductById: async (id) => {
         set({ loading: true, error: null });
         try {

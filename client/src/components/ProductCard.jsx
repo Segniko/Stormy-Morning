@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
             {/* Image Section */}
             <div className="relative aspect-square overflow-hidden bg-gray-50">
                 <img
-                    src={product.images[0] || 'https://via.placeholder.com/400'}
+                    src={product.images[0]}
                     alt={product.name}
                     className={`w-full h-full object-cover transition-all duration-500 ${isFashion ? 'group-hover:opacity-0' : 'group-hover:scale-110'}`}
                 />

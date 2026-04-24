@@ -1,12 +1,21 @@
 import axios from 'axios';
 import { create } from 'zustand';
 
+/**
+ * State management for Orders using Zustand.
+ * Handles creating, fetching, and updating orders.
+ */
 const useOrderStore = create((set, get) => ({
-    orders: [],
-    loading: false,
-    error: null,
-    success: false,
+    // State
+    orders: [],      // List of orders
+    loading: false,  // Async operation status
+    error: null,     // Error messages from API
+    success: false,  // Status for successful order creation
 
+    /**
+     * Create a new order and update the state.
+     * OrderData[Object] - The order details.
+     */
     createOrder: async (orderData) => {
         set({ loading: true, error: null, success: false });
         try {
@@ -26,6 +35,7 @@ const useOrderStore = create((set, get) => ({
         }
     },
 
+    // Fetch orders belonging to the logged in user.
     fetchMyOrders: async () => {
         set({ loading: true, error: null });
         try {
@@ -39,6 +49,7 @@ const useOrderStore = create((set, get) => ({
         }
     },
 
+    // Fetch all orders (Admin only).
     fetchAllOrders: async () => {
         set({ loading: true, error: null });
         try {
@@ -52,6 +63,11 @@ const useOrderStore = create((set, get) => ({
         }
     },
 
+    /**
+     * Update the status of an order (Admin only).
+     * Id[String] - Order ID.
+     * Status[String] - New status (e.g., 'Shipped', 'Delivered').
+     */
     updateOrderStatus: async (id, status) => {
         set({ loading: true, error: null });
         try {
@@ -70,6 +86,7 @@ const useOrderStore = create((set, get) => ({
         }
     },
 
+    // Reset the success status after it has been consumed by the UI.
     resetOrderSuccess: () => set({ success: false })
 }));
 
