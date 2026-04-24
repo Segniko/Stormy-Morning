@@ -21,40 +21,6 @@ const FilterSidebar = ({ isOpen, setIsOpen }) => {
                     ))}
                 </div>
             </div>
-
-            {/* Price Range */}
-            <div className="mb-10">
-                <h3 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">Price Range</h3>
-                <div className="flex items-center space-x-2 mb-4">
-                    <input type="text" placeholder="$0" className="w-full bg-gray-50 border-none rounded-md px-3 py-2 text-xs focus:ring-1 focus:ring-stormy-blue" />
-                    <span className="text-gray-300">-</span>
-                    <input type="text" placeholder="$1000" className="w-full bg-gray-50 border-none rounded-md px-3 py-2 text-xs focus:ring-1 focus:ring-stormy-blue" />
-                </div>
-                <input type="range" className="w-full h-1 bg-gray-100 rounded-lg appearance-none cursor-pointer accent-stormy-blue" />
-            </div>
-
-            {/* Colors */}
-            <div className="mb-10">
-                <h3 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">Colors</h3>
-                <div className="flex flex-wrap gap-2">
-                    {['bg-stormy-dark', 'bg-stormy-blue', 'bg-blue-500', 'bg-gray-400', 'bg-white border'].map((color) => (
-                        <button key={color} className={`w-8 h-8 rounded-full ${color} ring-offset-2 hover:ring-2 ring-stormy-blue transition-all`}></button>
-                    ))}
-                </div>
-            </div>
-
-            {/* Tech Specs (Dynamic Toggle based on mockup logic) */}
-            <div>
-                <h3 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">Tech Specs</h3>
-                <div className="space-y-3">
-                    {['Waterproof', 'ANC Enabled', 'Bluetooth 5.3'].map((spec) => (
-                        <label key={spec} className="flex items-center group cursor-pointer">
-                            <input type="checkbox" className="w-4 h-4 border-gray-200 rounded text-stormy-blue focus:ring-stormy-blue" />
-                            <span className="ml-3 text-sm text-gray-600 group-hover:text-stormy-blue transition-colors font-medium">{spec}</span>
-                        </label>
-                    ))}
-                </div>
-            </div>
         </aside>
     );
 };

@@ -90,18 +90,13 @@ const AboutPage = () => {
                     <span className="text-stormy-blue font-black text-[10px] uppercase tracking-[0.3em]">Our Founder</span>
                     <div className="flex flex-col items-center space-y-8 mt-10">
                         <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl">
-                            <img
-                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400"
-                                alt="Founder"
-                                className="w-full h-full object-cover"
-                            />
                         </div>
                         <div className="space-y-2">
-                            <h3 className="text-2xl font-black text-stormy-dark tracking-tight">Alex Storm</h3>
-                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Creative Director & Visionary</p>
+                            <h3 className="text-2xl font-black text-stormy-dark tracking-tight">John Doe</h3>
+                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Founder & Visionary</p>
                         </div>
                         <p className="max-w-2xl text-gray-400 italic font-serif text-lg leading-relaxed">
-                            "We don't create products; we create the background for your most ambitious moments. Stormy Morning is a lifestyle for those who know the difference between loud and luxury."
+                            "We don't create products. We create the background for your most ambitious moments. Stormy Morning is a lifestyle for those who know the difference between loud and luxury."
                         </p>
                     </div>
                 </div>
