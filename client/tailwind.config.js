@@ -5,9 +5,10 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
+    extend: { // This is a safety feature. It allows us to use the default values and on top of that we can add our own custom values. 
+      // If we don't use this, we will have to redefine all the default values.
       colors: {
-        stormy: {
+        stormy: { // Custom color palette
           blue: '#6A89A7',
           light: '#BDDDFC',
           bright: '#88BDF2',
@@ -19,5 +20,5 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [], // Plugins are optional. We use them if we want to use other custom features
 }

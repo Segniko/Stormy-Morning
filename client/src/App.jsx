@@ -22,7 +22,10 @@ function App() {
       <div className="min-h-screen bg-[#F0F4F8] flex flex-col">
         <Navbar />
         <main className="flex-grow">
+          {/** We are using routes for dynamic routing. 
+           * Routes makes sure to render the component based on the request URL */}
           <Routes>
+            {/* Public routes - accessible by everyone */}
             <Route path="/" element={<LandingPage />} />
             <Route path="/products" element={<ProductListingPage />} />
             <Route path="/product/:id" element={<ProductDetailPage />} />
