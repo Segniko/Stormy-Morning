@@ -44,8 +44,8 @@ const ContactPage = () => {
                                         <Mail className="w-6 h-6" />
                                     </div>
                                     <div className="space-y-1">
-                                        <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Inquiries</h4>
-                                        <p className="text-lg font-black text-stormy-dark">concierge@stormymorning.com</p>
+                                        <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Email</h4>
+                                        <p className="text-lg font-black text-stormy-dark">johndoe@gmail.com</p>
                                     </div>
                                 </div>
 
@@ -54,8 +54,8 @@ const ContactPage = () => {
                                         <Smartphone className="w-6 h-6" />
                                     </div>
                                     <div className="space-y-1">
-                                        <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Private Line</h4>
-                                        <p className="text-lg font-black text-stormy-dark">+1 (234) STORM-01</p>
+                                        <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Phone Number</h4>
+                                        <p className="text-lg font-black text-stormy-dark">+251911241297</p>
                                     </div>
                                 </div>
 
@@ -66,8 +66,7 @@ const ContactPage = () => {
                                     <div className="space-y-1">
                                         <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Atelier</h4>
                                         <p className="text-lg font-black text-stormy-dark leading-relaxed">
-                                            1221 Avenue of the Storms,<br />
-                                            New York, NY 10019
+                                            Addis Ababa, Ethiopia
                                         </p>
                                     </div>
                                 </div>
@@ -94,7 +93,7 @@ const ContactPage = () => {
                                     <input
                                         type="text"
                                         required
-                                        placeholder="Alex Morgan"
+                                        placeholder="John Doe"
                                         className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl px-6 py-4 text-sm text-stormy-dark focus:ring-2 focus:ring-stormy-blue/10 focus:bg-white transition-all outline-none font-medium"
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                     />
@@ -105,7 +104,7 @@ const ContactPage = () => {
                                     <input
                                         type="email"
                                         required
-                                        placeholder="alex@morgan.com"
+                                        placeholder="johndoe@gmail.com"
                                         className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl px-6 py-4 text-sm text-stormy-dark focus:ring-2 focus:ring-stormy-blue/10 focus:bg-white transition-all outline-none font-medium"
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                     />
@@ -155,7 +154,7 @@ const ContactPage = () => {
                         </div>
                         <div className="space-y-4">
                             <h4 className="text-lg font-black text-stormy-dark tracking-tight">Private Styling</h4>
-                            <p className="text-sm text-gray-400 leading-relaxed font-medium">Book a 1-on-1 virtual consultant with our elite styling team for a curated look.</p>
+                            <p className="text-sm text-gray-400 leading-relaxed font-medium">Book a 1 on 1 virtual consultant with our elite styling team for a curated look.</p>
                         </div>
                         <div className="space-y-4">
                             <h4 className="text-lg font-black text-stormy-dark tracking-tight">Secure Checkout</h4>

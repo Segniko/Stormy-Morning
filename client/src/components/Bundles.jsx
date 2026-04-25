@@ -18,19 +18,16 @@ const Bundles = () => {
         {
             name: 'The Executive',
             description: 'Leather Briefcase + Mechanical Keyboard',
-            image: 'https://images.unsplash.com/photo-1512213063672-d79b18bc6110?auto=format&fit=crop&q=80&w=800',
             colors: ['#8B4513', '#1A1A1A'],
         },
         {
             name: 'The Creative',
             description: 'Canvas Tote + Pro Drawing Tablet',
-            image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=800',
             colors: ['#D1D5DB', '#111827'],
         },
         {
             name: 'The Traveler',
             description: 'Waterproof Duffel + Noise Cancelling Headphones',
-            image: 'https://images.unsplash.com/photo-1544133782-b620ec9ad8ce?auto=format&fit=crop&q=80&w=800',
             colors: ['#1E3A8A', '#374151'],
         },
     ];

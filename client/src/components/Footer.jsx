@@ -34,10 +34,10 @@ const Footer = () => {
                     <div>
                         <h4 className="text-sm font-bold text-stormy-dark uppercase tracking-widest mb-6">Shop</h4>
                         <ul className="space-y-4">
-                            <li><Link to="/products?category=Apparel" className="text-sm text-gray-500 hover:text-stormy-blue transition-colors">Apparel</Link></li>
-                            <li><Link to="/products?category=Laptops" className="text-sm text-gray-500 hover:text-stormy-blue transition-colors">Laptops</Link></li>
-                            <li><Link to="/products?category=Audio" className="text-sm text-gray-500 hover:text-stormy-blue transition-colors">Audio Tech</Link></li>
-                            <li><Link to="/products?category=Photography" className="text-sm text-gray-500 hover:text-stormy-blue transition-colors">Photography</Link></li>
+                            <li><Link to="/products" className="text-sm text-gray-500 hover:text-stormy-blue transition-colors">Apparel</Link></li>
+                            <li><Link to="/products" className="text-sm text-gray-500 hover:text-stormy-blue transition-colors">Laptops</Link></li>
+                            <li><Link to="/products" className="text-sm text-gray-500 hover:text-stormy-blue transition-colors">Audio Tech</Link></li>
+                            <li><Link to="/products" className="text-sm text-gray-500 hover:text-stormy-blue transition-colors">Photography</Link></li>
                         </ul>
                     </div>
 
@@ -69,7 +69,7 @@ const Footer = () => {
                 </div>
 
                 <div className="border-t border-gray-100 pt-10 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-xs text-gray-400">© 2024 Stormy Morning. Designed for the modern aesthetic.</p>
+                    <p className="text-xs text-gray-400">© 2026 Stormy Morning. Designed for the modern aesthetic.</p>
                     <div className="flex space-x-6">
                         <Link to="#" className="text-xs text-gray-400 hover:text-stormy-blue transition-colors">Privacy Policy</Link>
                         <Link to="#" className="text-xs text-gray-400 hover:text-stormy-blue transition-colors">Terms of Service</Link>
