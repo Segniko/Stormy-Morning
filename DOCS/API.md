@@ -10,7 +10,7 @@ Base URL: `http://localhost:5000/api`
 
 ## Product Endpoints
 - `GET /products` - List all products (with filters for Cat, Price, Brand)
-- `GET /products/:id` - Detailed view (Dual-Spec data)
+- `GET /products/:id` - Detailed view (Dual Spec data)
 - `POST /products` - Create new product (Admin only)
 - `PATCH /products/:id` - Update product (Admin only)
 

@@ -14,8 +14,9 @@
 - **Naming**: camelCase for variables/functions, PascalCase for React Components.
 - **Components**: Functional components with Hooks.
 - **State**: Zustand for global state, `useState` for local UI state.
-- **Commits**: Descriptive messages (e.g., `feat: add dual spec toggle to PDP`).
+- **Commits**: Descriptive messages (e.g., `feat: add dual spec toggle`).
 
 ## Testing
-- **Backend**: supertest + jest
-- **Frontend**: vitest + react testing library
+- **Backend (API)**: Postman (Manual/Documentation) + Supertest/Jest (Automated)
+- **Frontend (UI)**: Vitest + React Testing Library (Automated)
+
