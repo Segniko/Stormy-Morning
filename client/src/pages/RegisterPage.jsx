@@ -104,7 +104,7 @@ const RegisterPage = () => {
                         <div className="flex items-start space-x-3 pt-2">
                             <input type="checkbox" required className="mt-1 rounded border-white/10 bg-white/5 text-stormy-bright focus:ring-stormy-bright/20 cursor-pointer" />
                             <p className="text-[10px] text-gray-500 font-medium leading-relaxed">
-                                I agree to the <Link to="#" className="text-stormy-bright font-bold hover:underline">Terms of Service</Link> and <Link to="#" className="text-stormy-bright font-bold hover:underline">Privacy Policy</Link>.
+                                I agree to the <Link to="/terms-of-service" className="text-stormy-bright font-bold hover:underline">Terms of Service</Link> and <Link to="/privacy-policy" className="text-stormy-bright font-bold hover:underline">Privacy Policy</Link>.
                             </p>
                         </div>
 

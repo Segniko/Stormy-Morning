@@ -47,7 +47,7 @@ const Footer = () => {
                         <ul className="space-y-4">
                             <li><Link to="/about" className="text-sm text-gray-500 hover:text-stormy-blue transition-colors">About Us</Link></li>
                             <li><Link to="/contact" className="text-sm text-gray-500 hover:text-stormy-blue transition-colors">Contact Us</Link></li>
-                            <li><Link to="#" className="text-sm text-gray-500 hover:text-stormy-blue transition-colors">Shipping Policy</Link></li>
+                            <li><Link to="/shipping-policy" className="text-sm text-gray-500 hover:text-stormy-blue transition-colors">Shipping Policy</Link></li>
                         </ul>
                     </div>
 
@@ -71,8 +71,8 @@ const Footer = () => {
                 <div className="border-t border-gray-100 pt-10 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-xs text-gray-400">© 2026 Stormy Morning. Designed for the modern aesthetic.</p>
                     <div className="flex space-x-6">
-                        <Link to="#" className="text-xs text-gray-400 hover:text-stormy-blue transition-colors">Privacy Policy</Link>
-                        <Link to="#" className="text-xs text-gray-400 hover:text-stormy-blue transition-colors">Terms of Service</Link>
+                        <Link to="/privacy-policy" className="text-xs text-gray-400 hover:text-stormy-blue transition-colors">Privacy Policy</Link>
+                        <Link to="/terms-of-service" className="text-xs text-gray-400 hover:text-stormy-blue transition-colors">Terms of Service</Link>
                     </div>
                 </div>
             </div>
