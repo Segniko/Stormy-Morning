@@ -2,7 +2,6 @@ import {
     AlertCircle,
     ChevronLeft, ChevronRight,
     Droplets,
-    Heart,
     Loader2,
     Maximize2,
     Play,
@@ -123,7 +122,7 @@ const ProductDetailPage = () => {
                             <div>
                                 <p className="text-[10px] font-bold text-stormy-blue uppercase tracking-[0.3em] mb-3">Premium {product.category}</p>
                                 <h1 className="text-5xl lg:text-6xl font-black text-stormy-dark mb-4 tracking-tight leading-[1.1]">{product.name}</h1>
-                                <p className="text-gray-400 text-sm font-medium tracking-wide">Signature Edition / Cloud Grey Gradient</p>
+                                <p className="text-gray-400 text-sm font-medium tracking-wide">{product.brand} / Signature Edition</p>
                             </div>
                             <div className="flex items-center space-x-2 bg-white/80 backdrop-blur-md text-gray-500 px-4 py-2 rounded-xl text-xs font-bold shadow-sm border border-white">
                                 <Star className="w-3.5 h-3.5 text-yellow-500 fill-current" />
@@ -140,6 +139,10 @@ const ProductDetailPage = () => {
                                 22% Off
                             </div>
                         </div>
+
+                        <p className="text-gray-500 text-sm leading-relaxed mb-10 max-w-xl">
+                            {product.description}
+                        </p>
 
                         {/* Selection Toggles */}
                         <div className="mb-12">
@@ -170,7 +173,7 @@ const ProductDetailPage = () => {
                                                 <button className="text-[10px] font-bold text-stormy-blue underline uppercase tracking-widest">Size Chart</button>
                                             </div>
                                             <div className="flex flex-wrap gap-3">
-                                                {['XS', 'S', 'M', 'L', 'XL'].map((size) => (
+                                                {(product.fashionDetails?.sizes || ['S', 'M', 'L']).map((size) => (
                                                     <button
                                                         key={size}
                                                         onClick={() => setSelectedSize(size)}
@@ -186,8 +189,10 @@ const ProductDetailPage = () => {
                                                 <Droplets className="w-5 h-5 text-stormy-blue" />
                                             </div>
                                             <div>
-                                                <h4 className="text-[10px] font-black text-stormy-dark uppercase tracking-widest mb-1">Material Integrity</h4>
-                                                <p className="text-xs text-gray-500 leading-relaxed font-medium">Sourced from eco-certified textile mills, utilizing our signature breathable membrane for all-weather comfort.</p>
+                                                <h4 className="text-[10px] font-black text-stormy-dark uppercase tracking-widest mb-1">Materials & Care</h4>
+                                                <p className="text-xs text-gray-500 leading-relaxed font-medium">
+                                                    {product.fashionDetails?.materials?.join(', ') || 'Premium blend'} — {product.fashionDetails?.washCare || 'Care according to label'}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -204,17 +209,13 @@ const ProductDetailPage = () => {
                             </div>
                         </div>
 
-                        {/* Add to Bag CTA */}
                         <div className="flex flex-col sm:flex-row gap-5 mb-10">
                             <button
                                 onClick={() => addItem(product)}
-                                className="flex-3 bg-stormy-dark text-white py-6 rounded-[1.5rem] font-black text-sm flex items-center justify-center space-x-4 hover:translate-y-[-3px] hover:shadow-2xl hover:shadow-stormy-dark/30 transition-all duration-500 shadow-xl shadow-stormy-dark/10"
+                                className="w-full bg-stormy-dark text-white py-6 rounded-[1.5rem] font-black text-sm flex items-center justify-center space-x-4 hover:translate-y-[-3px] hover:shadow-2xl hover:shadow-stormy-dark/30 transition-all duration-500 shadow-xl shadow-stormy-dark/10"
                             >
                                 <ShoppingBag className="w-5 h-5" />
                                 <span className="uppercase tracking-widest">Add to Bag</span>
-                            </button>
-                            <button className="flex-1 py-6 bg-white rounded-[1.5rem] text-gray-300 hover:text-red-500 hover:shadow-xl transition-all duration-500 border border-white flex items-center justify-center group">
-                                <Heart className="w-6 h-6 group-hover:fill-current transition-all" />
                             </button>
                         </div>
 

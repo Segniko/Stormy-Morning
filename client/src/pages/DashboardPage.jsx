@@ -3,7 +3,6 @@ import {
     CheckCircle2,
     ChevronRight,
     Clock,
-    Heart,
     HelpCircle,
     LogOut,
     Package,
@@ -147,52 +146,42 @@ const DashboardPage = () => {
 
                         {/* Bottom Row */}
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                            {/* Mood Board Widget */}
-                            <div className="lg:col-span-2 bg-white rounded-3xl p-8 border border-gray-100 shadow-sm">
-                                <div className="flex justify-between items-center mb-8">
-                                    <h3 className="text-lg font-bold text-stormy-dark">Mood Board</h3>
-                                    <button className="text-[10px] font-bold text-gray-400 uppercase tracking-widest hover:text-stormy-blue">View All</button>
-                                </div>
-                                <div className="flex flex-col items-center justify-center py-10 bg-gray-50 rounded-2xl border border-dashed border-gray-200">
-                                    <Heart className="w-8 h-8 text-gray-300 mb-3" />
-                                    <p className="text-xs font-bold text-gray-400">Your mood board is empty</p>
-                                    <p className="text-[10px] text-gray-500 mt-1">Save items you love to build your aesthetic.</p>
-                                </div>
-                            </div>
 
-                            {/* Support & Returns Widget */}
-                            <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm flex flex-col">
-                                <h3 className="text-lg font-bold text-stormy-dark mb-8">Support & Returns</h3>
-                                <div className="space-y-4 flex-grow">
-                                    <button className="w-full flex items-center justify-between p-4 bg-gray-50 rounded-2xl group border border-transparent hover:border-stormy-blue transition-all">
-                                        <div className="flex items-center space-x-3">
-                                            <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-stormy-blue shadow-sm">
-                                                <HelpCircle className="w-5 h-5" />
+
+                            <div className="lg:col-span-3 bg-white rounded-3xl p-8 border border-gray-100 shadow-sm flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+                                <div className="flex-1">
+                                    <h3 className="text-lg font-bold text-stormy-dark mb-8">Support & Returns</h3>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <button className="flex items-center justify-between p-4 bg-gray-50 rounded-2xl group border border-transparent hover:border-stormy-blue transition-all">
+                                            <div className="flex items-center space-x-3">
+                                                <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-stormy-blue shadow-sm">
+                                                    <HelpCircle className="w-5 h-5" />
+                                                </div>
+                                                <div className="text-left">
+                                                    <p className="text-xs font-bold text-stormy-dark">Tech Support</p>
+                                                    <p className="text-[10px] text-gray-400">Setup and troubleshooting</p>
+                                                </div>
                                             </div>
-                                            <div className="text-left">
-                                                <p className="text-xs font-bold text-stormy-dark">Tech Support</p>
-                                                <p className="text-[10px] text-gray-400">Setup and troubleshooting</p>
+                                            <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-stormy-blue transition-all" />
+                                        </button>
+                                        <button className="flex items-center justify-between p-4 bg-gray-50 rounded-2xl group border border-transparent hover:border-stormy-blue transition-all">
+                                            <div className="flex items-center space-x-3">
+                                                <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-red-400 shadow-sm">
+                                                    <RefreshCcw className="w-5 h-5" />
+                                                </div>
+                                                <div className="text-left">
+                                                    <p className="text-xs font-bold text-stormy-dark">Start a Return</p>
+                                                    <p className="text-[10px] text-gray-400">30-day money back guarantee</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-stormy-blue transition-all" />
-                                    </button>
-                                    <button className="w-full flex items-center justify-between p-4 bg-gray-50 rounded-2xl group border border-transparent hover:border-stormy-blue transition-all">
-                                        <div className="flex items-center space-x-3">
-                                            <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center text-red-400 shadow-sm">
-                                                <RefreshCcw className="w-5 h-5" />
-                                            </div>
-                                            <div className="text-left">
-                                                <p className="text-xs font-bold text-stormy-dark">Start a Return</p>
-                                                <p className="text-[10px] text-gray-400">30-day money back guarantee</p>
-                                            </div>
-                                        </div>
-                                        <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-stormy-blue transition-all" />
-                                    </button>
+                                            <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-stormy-blue transition-all" />
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className="mt-8 bg-gray-50 p-4 rounded-2xl flex items-start space-x-3">
+                                <div className="lg:w-72 bg-gray-50 p-6 rounded-2xl flex items-start space-x-3 self-stretch">
                                     <Clock className="w-4 h-4 text-gray-400 mt-0.5" />
                                     <p className="text-[10px] text-gray-500 leading-relaxed font-medium">
-                                        Holiday season returns extended until Jan 31st for all tech items.
+                                        Holiday season returns extended until Jan 31st for all tech items. Our experts are available 24/7 for support.
                                     </p>
                                 </div>
                             </div>
