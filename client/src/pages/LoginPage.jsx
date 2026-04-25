@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ArrowRight, Github, Lock, Mail } from 'lucide-react';
+import { ArrowRight, Lock, Mail } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuthStore from '../store/authStore';
@@ -38,7 +38,7 @@ const LoginPage = () => {
                 <div className="bg-white bg-opacity-10 backdrop-blur-2xl border border-white border-opacity-10 rounded-3xl p-8 md:p-14 shadow-2xl">
                     <div className="text-center mb-10">
                         <div className="w-12 h-12 rounded-2xl bg-stormy-bright flex items-center justify-center mx-auto mb-4 shadow-lg shadow-stormy-bright/30">
-                            <span className="text-stormy-dark font-black">S</span>
+                            <span className="text-stormy-dark font-bold text-lg">SM</span>
                         </div>
                         <h1 className="text-3xl font-bold text-white mb-1">Welcome Back</h1>
                         <p className="text-gray-400 text-sm">Sign in to your premium account</p>
@@ -61,7 +61,7 @@ const LoginPage = () => {
                                         required
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        placeholder="alex@example.com"
+                                        placeholder="johndoe@gmail.com"
                                         className="w-full bg-white bg-opacity-5 border border-white border-opacity-10 rounded-2xl pl-12 pr-4 py-4 text-sm text-stormy-dark focus:ring-1 focus:ring-stormy-bright focus:bg-white/20 transition-all outline-none"
                                     />
                                 </div>
@@ -96,22 +96,9 @@ const LoginPage = () => {
                         </button>
                     </form>
 
-                    <div className="mt-8 pt-8 border-t border-white border-opacity-5 flex flex-col items-center">
-                        <div className="flex items-center space-x-4 w-full">
-                            <button className="flex-1 flex items-center justify-center space-x-2 py-3 bg-white bg-opacity-5 border border-white border-opacity-10 rounded-xl hover:bg-opacity-10 transition-all">
-                                <Github className="w-4 h-4 text-white" />
-                                <span className="text-xs font-bold text-white">Github</span>
-                            </button>
-                            <button className="flex-1 flex items-center justify-center space-x-2 py-3 bg-white bg-opacity-5 border border-white border-opacity-10 rounded-xl hover:bg-opacity-10 transition-all">
-                                <div className="w-4 h-4 bg-white rounded-full flex items-center justify-center text-[10px] font-black text-stormy-dark italic">G</div>
-                                <span className="text-xs font-bold text-white">Google</span>
-                            </button>
-                        </div>
-
-                        <p className="mt-8 text-xs text-gray-500 font-medium">
-                            Don't have an account? <Link to="/register" className="text-stormy-bright font-bold hover:underline">Create for free</Link>
-                        </p>
-                    </div>
+                    <p className="mt-8 text-xs text-gray-500 font-medium text-center">
+                        Don't have an account? <Link to="/register" className="text-stormy-bright font-bold hover:underline">Create for free</Link>
+                    </p>
                 </div>
             </div>
         </div>

@@ -40,7 +40,7 @@ const RegisterPage = () => {
                     <div className="text-center mb-10">
                         <Link to="/" className="inline-block mb-4 group">
                             <div className="w-12 h-12 rounded-2xl bg-stormy-bright flex items-center justify-center transition-transform group-hover:scale-110 duration-500 shadow-xl shadow-stormy-bright/20">
-                                <span className="text-stormy-dark font-black text-lg">S</span>
+                                <span className="text-stormy-dark font-bold text-lg">SM</span>
                             </div>
                         </Link>
                         <h2 className="text-4xl font-black text-white mb-2 tracking-tight">Join the Storm</h2>
@@ -64,7 +64,7 @@ const RegisterPage = () => {
                                         required
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
-                                        placeholder="Alex Morgan"
+                                        placeholder="John Doe"
                                         className="w-full bg-white bg-opacity-5 border border-white border-opacity-10 rounded-2xl pl-14 pr-6 py-4 text-sm text-stormy-dark focus:ring-1 focus:ring-stormy-bright focus:bg-white/20 transition-all outline-none font-medium"
                                     />
                                 </div>
@@ -79,7 +79,7 @@ const RegisterPage = () => {
                                         required
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        placeholder="alex@morgan.com"
+                                        placeholder="johndoe@gmail.com"
                                         className="w-full bg-white bg-opacity-5 border border-white border-opacity-10 rounded-2xl pl-14 pr-6 py-4 text-sm text-stormy-dark focus:ring-1 focus:ring-stormy-bright focus:bg-white/20 transition-all outline-none font-medium"
                                     />
                                 </div>
@@ -104,7 +104,7 @@ const RegisterPage = () => {
                         <div className="flex items-start space-x-3 pt-2">
                             <input type="checkbox" required className="mt-1 rounded border-white/10 bg-white/5 text-stormy-bright focus:ring-stormy-bright/20 cursor-pointer" />
                             <p className="text-[10px] text-gray-500 font-medium leading-relaxed">
-                                I agree to the <Link to="#" className="text-white font-bold hover:underline">Terms of Service</Link> and <Link to="#" className="text-white font-bold hover:underline">Privacy Policy</Link>.
+                                I agree to the <Link to="#" className="text-stormy-bright font-bold hover:underline">Terms of Service</Link> and <Link to="#" className="text-stormy-bright font-bold hover:underline">Privacy Policy</Link>.
                             </p>
                         </div>
 

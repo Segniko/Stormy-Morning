@@ -184,7 +184,7 @@ const CheckoutPage = () => {
                                 <div className="space-y-8 mb-12">
                                     <div className="space-y-3">
                                         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] ml-1">Name on Card</label>
-                                        <input type="text" className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-stormy-blue/20 focus:bg-white transition-all outline-none" placeholder="Alex Morgan" />
+                                        <input type="text" className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-stormy-blue/20 focus:bg-white transition-all outline-none" placeholder="John Doe" />
                                     </div>
                                     <div className="space-y-3">
                                         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] ml-1">Card Number</label>
