@@ -1,5 +1,4 @@
 import {
-    ArrowUpRight,
     CheckCircle2,
     ChevronRight,
     Clock,
@@ -134,12 +133,6 @@ const DashboardPage = () => {
                                             </div>
                                         );
                                     })}
-                                </div>
-
-                                <div className="mt-20 pt-8 border-t border-gray-50 flex justify-end">
-                                    <button className="text-xs font-bold text-stormy-dark flex items-center hover:text-stormy-blue transition-colors group">
-                                        View Full Details <ArrowUpRight className="w-4 h-4 ml-1 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                                    </button>
                                 </div>
                             </div>
                         )}
