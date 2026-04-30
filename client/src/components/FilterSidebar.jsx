@@ -43,15 +43,14 @@ const FilterSidebar = ({ isOpen, setIsOpen }) => {
                     <div>
                         <h3 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-6">Collections</h3>
                         <div className="space-y-2">
-                            {['All Products', 'Apparel', 'Laptops', 'Audio Tech', 'Wearables', 'Bags', 'Photography'].map((cat) => (
+                            {['All Products', 'Apparel', 'Laptops', 'Audio', 'Wearables', 'Bags', 'Photography'].map((cat) => (
                                 <button
                                     key={cat}
                                     onClick={() => handleCategoryClick(cat)}
-                                    className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all duration-200 ${
-                                        activeCategory === cat 
-                                        ? 'bg-stormy-blue/5 text-stormy-blue shadow-sm' 
-                                        : 'text-gray-400 hover:bg-gray-50 hover:text-stormy-dark'
-                                    }`}
+                                    className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all duration-200 ${activeCategory === cat
+                                            ? 'bg-stormy-blue/5 text-stormy-blue shadow-sm'
+                                            : 'text-gray-400 hover:bg-gray-50 hover:text-stormy-dark'
+                                        }`}
                                 >
                                     {cat}
                                 </button>
