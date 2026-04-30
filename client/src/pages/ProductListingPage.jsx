@@ -42,27 +42,27 @@ const ProductListingPage = () => {
                     <span className="text-stormy-blue">All Products</span>
                 </div>
 
-                <div className="flex justify-between items-end mb-12">
+                <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-8 mb-12">
                     <div>
-                        <h1 className="text-4xl lg:text-5xl font-bold text-stormy-dark mb-4">Premium Collection</h1>
-                        <p className="text-gray-500 text-sm">
-                            {!loading && `${products.length} items — Page ${currentPage} of ${totalPages || 1}`}
+                        <h1 className="text-4xl lg:text-5xl font-bold text-stormy-dark mb-4 tracking-tight">Premium Collection</h1>
+                        <p className="text-gray-500 text-sm font-medium">
+                            {!loading && `${products.length} items curated — Page ${currentPage} of ${totalPages || 1}`}
                         </p>
                     </div>
 
-                    <div className="flex items-center space-x-4">
+                    <div className="flex items-center gap-3 w-full md:w-auto">
                         {/* Mobile Filter Toggle */}
                         <button
                             onClick={() => setIsSidebarOpen(true)}
-                            className="lg:hidden flex items-center space-x-2 bg-white px-4 py-2 rounded-md border border-gray-100 shadow-sm font-bold text-xs"
+                            className="flex-1 lg:hidden flex items-center justify-center space-x-2 bg-white px-5 py-4 rounded-2xl border border-gray-100 shadow-sm font-bold text-xs text-stormy-dark hover:bg-gray-50 transition-all active:scale-95"
                         >
-                            <SlidersHorizontal className="w-4 h-4" />
+                            <SlidersHorizontal className="w-4 h-4 text-stormy-blue" />
                             <span>Filters</span>
                         </button>
 
                         {/* Sort Dropdown */}
-                        <div className="relative group">
-                            <button className="flex items-center space-x-4 bg-white px-6 py-3 rounded-md border border-gray-100 shadow-sm font-bold text-xs text-stormy-dark">
+                        <div className="relative group flex-1 md:flex-none">
+                            <button className="w-full flex items-center justify-between md:justify-center space-x-4 bg-white px-6 py-4 rounded-2xl border border-gray-100 shadow-sm font-bold text-xs text-stormy-dark hover:bg-gray-50 transition-all active:scale-95">
                                 <span>Recommend</span>
                                 <ChevronDown className="w-4 h-4 text-gray-400" />
                             </button>
@@ -99,37 +99,39 @@ const ProductListingPage = () => {
 
                         {/* Real Pagination */}
                         {!loading && totalPages > 1 && (
-                            <div className="mt-20 flex justify-center items-center space-x-2">
+                            <div className="mt-20 flex justify-center items-center space-x-3">
                                 {/* Previous */}
                                 <button
                                     onClick={() => handlePageChange(currentPage - 1)}
                                     disabled={currentPage === 1}
-                                    className="w-10 h-10 border border-gray-100 rounded-md flex items-center justify-center bg-white text-gray-400 hover:bg-gray-50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                                    className="w-12 h-12 border border-gray-100 rounded-xl flex items-center justify-center bg-white text-gray-400 hover:bg-gray-50 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm active:scale-90"
                                 >
-                                    <ChevronLeft className="w-4 h-4" />
+                                    <ChevronLeft className="w-5 h-5" />
                                 </button>
 
                                 {/* Page Numbers */}
-                                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                                    <button
-                                        key={page}
-                                        onClick={() => handlePageChange(page)}
-                                        className={`w-10 h-10 border rounded-md flex items-center justify-center font-bold text-xs transition-all duration-200 ${currentPage === page
-                                            ? 'bg-stormy-dark text-white border-stormy-dark shadow-md'
-                                            : 'bg-white text-gray-500 border-gray-100 hover:bg-gray-50'
-                                            }`}
-                                    >
-                                        {page}
-                                    </button>
-                                ))}
+                                <div className="flex items-center space-x-2">
+                                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                                        <button
+                                            key={page}
+                                            onClick={() => handlePageChange(page)}
+                                            className={`w-12 h-12 border rounded-xl flex items-center justify-center font-black text-xs transition-all duration-300 active:scale-90 ${currentPage === page
+                                                ? 'bg-stormy-dark text-white border-stormy-dark shadow-xl shadow-stormy-dark/20 scale-110 z-10'
+                                                : 'bg-white text-gray-400 border-gray-100 hover:bg-gray-50 hover:text-stormy-dark'
+                                                }`}
+                                        >
+                                            {page}
+                                        </button>
+                                    ))}
+                                </div>
 
                                 {/* Next */}
                                 <button
                                     onClick={() => handlePageChange(currentPage + 1)}
                                     disabled={currentPage === totalPages}
-                                    className="w-10 h-10 border border-gray-100 rounded-md flex items-center justify-center bg-white text-gray-400 hover:bg-gray-50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                                    className="w-12 h-12 border border-gray-100 rounded-xl flex items-center justify-center bg-white text-gray-400 hover:bg-gray-50 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm active:scale-90"
                                 >
-                                    <ChevronRight className="w-4 h-4" />
+                                    <ChevronRight className="w-5 h-5" />
                                 </button>
                             </div>
                         )}
