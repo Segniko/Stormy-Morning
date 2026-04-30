@@ -8,11 +8,14 @@ const useProductStore = create((set) => ({
     loading: false,  // Fetching status
     error: null,     // Error message
 
-    // Category[String] - Fetch products by category or all products
-    fetchProducts: async (category = '') => {
+    // Category[String], Keyword[String] - Fetch products by category/search
+    fetchProducts: async (category = '', keyword = '') => {
         set({ loading: true, error: null });
         try {
-            const url = category ? `/api/products?category=${category}` : '/api/products';
+            let url = '/api/products?';
+            if (category) url += `category=${category}&`;
+            if (keyword) url += `keyword=${keyword}`;
+            
             const response = await axios.get(url);
             set({ products: response.data, loading: false });
         } catch (error) {

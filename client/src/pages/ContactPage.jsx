@@ -14,6 +14,7 @@ const ContactPage = () => {
         // Mock submission
         console.log('Form submitted:', formData);
         alert('Thank you for reaching out to the Storm. We will be in touch shortly.');
+        window.location.reload();
     };
 
     return (

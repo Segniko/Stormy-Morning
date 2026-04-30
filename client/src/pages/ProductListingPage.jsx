@@ -16,7 +16,8 @@ const ProductListingPage = () => {
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const category = params.get('category') || '';
-        fetchProducts(category);
+        const keyword = params.get('search') || '';
+        fetchProducts(category, keyword);
         setCurrentPage(1); // Reset to page 1 when filter changes
     }, [fetchProducts, location.search]);
 
@@ -39,12 +40,18 @@ const ProductListingPage = () => {
                 <div className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-10">
                     <span>Home</span>
                     <span>/</span>
-                    <span className="text-stormy-blue">All Products</span>
+                    <span className="text-stormy-blue">
+                        {new URLSearchParams(location.search).get('search') ? 'Search' : (new URLSearchParams(location.search).get('category') || 'All Products')}
+                    </span>
                 </div>
 
                 <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-8 mb-12">
                     <div>
-                        <h1 className="text-4xl lg:text-5xl font-bold text-stormy-dark mb-4 tracking-tight">Premium Collection</h1>
+                        <h1 className="text-4xl lg:text-5xl font-bold text-stormy-dark mb-4 tracking-tight">
+                            {new URLSearchParams(location.search).get('search') 
+                                ? `Results for "${new URLSearchParams(location.search).get('search')}"` 
+                                : (new URLSearchParams(location.search).get('category') || 'Premium Collection')}
+                        </h1>
                         <p className="text-gray-500 text-sm font-medium">
                             {!loading && `${products.length} items curated — Page ${currentPage} of ${totalPages || 1}`}
                         </p>

@@ -6,7 +6,14 @@ import Product from '../models/productModel.js';
 const getProducts = async (req, res, next) => {
     try {
         const category = req.query.category;
-        const filter = category ? { category } : {};
+        const keyword = req.query.keyword ? {
+            name: {
+                $regex: req.query.keyword,
+                $options: 'i',
+            },
+        } : {};
+
+        const filter = { ...keyword, ...(category ? { category } : {}) };
 
         const products = await Product.find(filter);
         res.status(200).json(products);

@@ -1,6 +1,22 @@
 import { X } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const FilterSidebar = ({ isOpen, setIsOpen }) => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
+    const activeCategory = params.get('category') || 'All Products';
+
+    const handleCategoryClick = (cat) => {
+        if (cat === 'All Products') {
+            params.delete('category');
+        } else {
+            params.set('category', cat);
+        }
+        navigate(`/products?${params.toString()}`);
+        if (window.innerWidth < 1024) setIsOpen(false);
+    };
+
     return (
         <>
             {/* Backdrop for mobile */}
@@ -30,7 +46,12 @@ const FilterSidebar = ({ isOpen, setIsOpen }) => {
                             {['All Products', 'Apparel', 'Laptops', 'Audio Tech', 'Wearables', 'Bags', 'Photography'].map((cat) => (
                                 <button
                                     key={cat}
-                                    className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all duration-200 ${cat === 'All Products' ? 'bg-stormy-blue/5 text-stormy-blue' : 'text-gray-400 hover:bg-gray-50 hover:text-stormy-dark'}`}
+                                    onClick={() => handleCategoryClick(cat)}
+                                    className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all duration-200 ${
+                                        activeCategory === cat 
+                                        ? 'bg-stormy-blue/5 text-stormy-blue shadow-sm' 
+                                        : 'text-gray-400 hover:bg-gray-50 hover:text-stormy-dark'
+                                    }`}
                                 >
                                     {cat}
                                 </button>
