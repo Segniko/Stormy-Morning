@@ -1,4 +1,4 @@
-import { Menu, Search, ShoppingBag, User } from 'lucide-react';
+import { Search, ShoppingBag, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import useAuthStore from '../store/authStore';
 import useCartStore from '../store/cartStore';
@@ -52,9 +52,6 @@ const Navbar = () => {
                         <Link to={userInfo ? "/profile" : "/login"} className="p-2.5 bg-gray-50 rounded-full text-gray-500 hover:bg-stormy-blue hover:text-white transition-all shadow-sm">
                             <User className="w-5 h-5" />
                         </Link>
-                        <button className="md:hidden p-2.5 bg-gray-50 rounded-full text-gray-500">
-                            <Menu className="w-5 h-5" />
-                        </button>
                     </div>
                 </div>
             </div>
