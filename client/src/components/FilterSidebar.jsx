@@ -5,7 +5,7 @@ const FilterSidebar = ({ isOpen, setIsOpen }) => {
         <>
             {/* Backdrop for mobile */}
             {isOpen && (
-                <div 
+                <div
                     className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300"
                     onClick={() => setIsOpen(false)}
                 />
@@ -14,8 +14,8 @@ const FilterSidebar = ({ isOpen, setIsOpen }) => {
             <aside className={`fixed inset-y-0 left-0 bg-white z-50 w-72 p-8 border-r border-gray-100 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-500 ease-out lg:relative lg:translate-x-0 lg:block shadow-2xl lg:shadow-none`}>
                 <div className="flex justify-between items-center mb-10 lg:hidden">
                     <h2 className="text-xl font-bold text-stormy-dark">Filters</h2>
-                    <button 
-                        onClick={() => setIsOpen(false)} 
+                    <button
+                        onClick={() => setIsOpen(false)}
                         className="p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
                     >
                         <X className="w-5 h-5 text-gray-500" />
@@ -28,29 +28,13 @@ const FilterSidebar = ({ isOpen, setIsOpen }) => {
                         <h3 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-6">Collections</h3>
                         <div className="space-y-2">
                             {['All Products', 'Apparel', 'Laptops', 'Audio Tech', 'Wearables', 'Bags', 'Photography'].map((cat) => (
-                                <button 
-                                    key={cat} 
+                                <button
+                                    key={cat}
                                     className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all duration-200 ${cat === 'All Products' ? 'bg-stormy-blue/5 text-stormy-blue' : 'text-gray-400 hover:bg-gray-50 hover:text-stormy-dark'}`}
                                 >
                                     {cat}
                                 </button>
                             ))}
-                        </div>
-                    </div>
-
-                    {/* Price Range - Placeholder for visual completeness */}
-                    <div>
-                        <h3 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-6">Price Range</h3>
-                        <div className="px-2">
-                            <div className="h-1.5 w-full bg-gray-100 rounded-full relative">
-                                <div className="absolute left-0 right-1/4 h-full bg-stormy-blue rounded-full"></div>
-                                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-stormy-blue rounded-full shadow-sm cursor-pointer"></div>
-                                <div className="absolute right-1/4 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-stormy-blue rounded-full shadow-sm cursor-pointer"></div>
-                            </div>
-                            <div className="flex justify-between mt-4">
-                                <span className="text-xs font-bold text-stormy-dark">$0</span>
-                                <span className="text-xs font-bold text-stormy-dark">$1000+</span>
-                            </div>
                         </div>
                     </div>
                 </div>
