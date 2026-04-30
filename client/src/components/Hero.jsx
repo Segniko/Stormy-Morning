@@ -19,7 +19,7 @@ const Hero = () => {
                             <h1 className="text-5xl lg:text-6xl font-black mb-10 leading-[1.1] tracking-tight">
                                 Timeless<br />Elegance
                             </h1>
-                            <Link to="/products" className="group flex items-center bg-white text-stormy-dark px-10 py-4 rounded-full w-fit font-bold hover:bg-stormy-light transition-all duration-500 shadow-xl shadow-black/10">
+                            <Link to="/products" className="group flex items-center justify-center bg-white text-stormy-dark px-10 py-4 rounded-full w-full sm:w-fit font-bold hover:bg-stormy-light transition-all duration-500 shadow-xl shadow-black/10">
                                 Shop Fashion
                                 <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                             </Link>
@@ -38,7 +38,7 @@ const Hero = () => {
                             <h1 className="text-5xl lg:text-6xl font-black mb-10 leading-[1.1] tracking-tight">
                                 Innovation<br />Unleashed
                             </h1>
-                            <Link to="/products" className="group flex items-center bg-white/10 backdrop-blur-md border border-white/20 text-white px-10 py-4 rounded-full w-fit font-bold hover:bg-white hover:text-stormy-dark transition-all duration-500 shadow-xl shadow-black/10">
+                            <Link to="/products" className="group flex items-center justify-center bg-white/10 backdrop-blur-md border border-white/20 text-white px-10 py-4 rounded-full w-full sm:w-fit font-bold hover:bg-white hover:text-stormy-dark transition-all duration-500 shadow-xl shadow-black/10">
                                 Shop Gadgets
                                 <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                             </Link>

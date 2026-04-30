@@ -11,7 +11,7 @@ import {
     User as UserIcon
 } from 'lucide-react';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuthStore from '../store/authStore';
 import useOrderStore from '../store/orderStore';
 
@@ -134,6 +134,12 @@ const DashboardPage = () => {
                                         );
                                     })}
                                 </div>
+
+                                <div className="mt-8 pt-8 border-t border-gray-50 flex justify-center lg:justify-start">
+                                    <Link to="/products" className="w-full sm:w-auto text-center bg-stormy-dark text-white px-8 py-4 rounded-2xl font-bold text-xs hover:translate-y-[-2px] transition-all shadow-lg shadow-stormy-dark/10">
+                                        Browse More Tech & Style
+                                    </Link>
+                                </div>
                             </div>
                         )}
 
@@ -223,7 +229,10 @@ const DashboardPage = () => {
                                             <ShoppingBag className="w-8 h-8 text-gray-200" />
                                         </div>
                                         <p className="text-xs font-bold text-gray-400">No transactions found</p>
-                                        <p className="text-[10px] text-gray-500 mt-1">Your recent orders will appear here once you make a purchase.</p>
+                                        <p className="text-[10px] text-gray-500 mt-1 mb-8">Your recent orders will appear here once you make a purchase.</p>
+                                        <Link to="/products" className="w-full sm:w-auto text-center bg-stormy-dark text-white px-10 py-4 rounded-2xl font-bold text-xs hover:translate-y-[-2px] transition-all shadow-xl shadow-stormy-dark/10">
+                                            Start Exploring
+                                        </Link>
                                     </div>
                                 )}
                             </div>

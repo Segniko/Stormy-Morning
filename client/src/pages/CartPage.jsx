@@ -19,7 +19,7 @@ const CartPage = () => {
                         </div>
                         <h2 className="text-2xl font-bold text-stormy-dark mb-4">Bag is currently empty</h2>
                         <p className="text-gray-400 text-sm mb-12 font-medium">Seems like you haven't added anything to your collection yet.</p>
-                        <Link to="/products" className="bg-stormy-dark text-white px-12 py-5 rounded-2xl font-bold text-sm hover:translate-y-[-2px] hover:shadow-2xl hover:shadow-stormy-dark/20 transition-all duration-300 shadow-xl shadow-stormy-dark/10">
+                        <Link to="/products" className="w-full sm:w-auto text-center bg-stormy-dark text-white px-12 py-5 rounded-2xl font-bold text-sm hover:translate-y-[-2px] hover:shadow-2xl hover:shadow-stormy-dark/20 transition-all duration-300 shadow-xl shadow-stormy-dark/10">
                             Start Shopping
                         </Link>
                     </div>

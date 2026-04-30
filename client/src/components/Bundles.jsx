@@ -51,7 +51,7 @@ const Bundles = () => {
                             <h2 className="text-4xl lg:text-5xl font-bold text-stormy-dark mb-6 tracking-tight">The Complete Setup</h2>
                             <p className="text-gray-500 text-lg">Handpicked combinations of premium goods. Elevate your daily carry with these perfectly matched sets.</p>
                         </div>
-                        <Link to="/products" className="border border-gray-200 px-8 py-3 rounded-md font-bold text-sm hover:bg-gray-50 transition-colors">
+                        <Link to="/products" className="w-full md:w-auto text-center border border-gray-200 px-8 py-3 rounded-md font-bold text-sm hover:bg-gray-50 transition-colors">
                             View All Bundles
                         </Link>
                     </div>

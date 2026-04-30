@@ -84,7 +84,7 @@ const FlashDeals = () => {
                             ))}
                         </div>
 
-                        <Link to="/products" className="inline-block bg-stormy-bright text-stormy-dark font-bold px-10 py-4 rounded-full hover:bg-white transition-all duration-300">
+                        <Link to="/products" className="w-full sm:w-auto text-center inline-block bg-stormy-bright text-stormy-dark font-bold px-10 py-4 rounded-full hover:bg-white transition-all duration-300">
                             Shop Deals Now
                         </Link>
                     </div>
