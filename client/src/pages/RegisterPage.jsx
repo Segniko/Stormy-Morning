@@ -19,7 +19,7 @@ const RegisterPage = () => {
         setLoading(true);
         setError('');
         try {
-            const { data } = await axios.post('/api/users/', { name, email, password });
+            const { data } = await axios.post('/api/users', { name, email, password });
             setUserInfo(data);
             navigate('/profile');
         } catch (err) {
