@@ -18,6 +18,12 @@ const CheckoutPage = () => {
         zip: '',
         country: 'Ethiopia'
     });
+    const [paymentData, setPaymentData] = useState({
+        cardName: '',
+        cardNumber: '',
+        expDate: '',
+        cvc: ''
+    });
 
     const subtotal = cartItems ? cartItems.reduce((acc, item) => acc + (item.price || 0) * (item.qty || 0), 0) : 0;
     const shipping = 15.00;
@@ -27,7 +33,43 @@ const CheckoutPage = () => {
         setShippingData({ ...shippingData, [e.target.name]: e.target.value });
     };
 
+    const handlePaymentChange = (e) => {
+        setPaymentData({ ...paymentData, [e.target.name]: e.target.value });
+    };
+
+    const validateShipping = () => {
+        const { firstName, lastName, street, city, zip } = shippingData;
+        if (!firstName || !lastName || !street || !city || !zip) {
+            alert('Please fill in all shipping details.');
+            return false;
+        }
+        return true;
+    };
+
+    const validatePayment = () => {
+        const { cardName, cardNumber, expDate, cvc } = paymentData;
+        if (!cardName || !cardNumber || !expDate || !cvc) {
+            alert('Please fill in all payment details.');
+            return false;
+        }
+        // Basic card number length check for demo
+        if (cardNumber.replace(/\s/g, '').length < 16) {
+            alert('Please enter a valid 16-digit card number.');
+            return false;
+        }
+        return true;
+    };
+
+    const handleNextStep = () => {
+        if (validateShipping()) {
+            setStep(2);
+            window.scrollTo(0, 0);
+        }
+    };
+
     const handlePlaceOrder = async () => {
+        if (!validatePayment()) return;
+
         const orderData = {
             items: cartItems.map(item => ({
                 _id: item._id,
@@ -131,7 +173,7 @@ const CheckoutPage = () => {
                                 </div>
 
                                 <button
-                                    onClick={() => setStep(2)}
+                                    onClick={handleNextStep}
                                     className="mt-12 w-full bg-stormy-dark text-white py-5 rounded-[1.5rem] font-bold text-sm hover:translate-y-[-2px] hover:shadow-2xl hover:shadow-stormy-dark/20 transition-all duration-500 flex items-center justify-center group"
                                 >
                                     Continue to Payments
@@ -184,20 +226,20 @@ const CheckoutPage = () => {
                                 <div className="space-y-8 mb-12">
                                     <div className="space-y-3">
                                         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] ml-1">Name on Card</label>
-                                        <input type="text" className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-stormy-blue/20 focus:bg-white transition-all outline-none" placeholder="John Doe" />
+                                        <input name="cardName" value={paymentData.cardName} onChange={handlePaymentChange} type="text" className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-stormy-blue/20 focus:bg-white transition-all outline-none" placeholder="John Doe" required />
                                     </div>
                                     <div className="space-y-3">
                                         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] ml-1">Card Number</label>
-                                        <input type="text" className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-stormy-blue/20 focus:bg-white transition-all outline-none" placeholder="0000 0000 0000 0000" />
+                                        <input name="cardNumber" value={paymentData.cardNumber} onChange={handlePaymentChange} type="text" className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-stormy-blue/20 focus:bg-white transition-all outline-none" placeholder="0000 0000 0000 0000" maxLength="19" required />
                                     </div>
                                     <div className="grid grid-cols-2 gap-8">
                                         <div className="space-y-3">
                                             <label className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] ml-1">Expiration</label>
-                                            <input type="text" className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-stormy-blue/20 focus:bg-white transition-all outline-none" placeholder="MM / YY" />
+                                            <input name="expDate" value={paymentData.expDate} onChange={handlePaymentChange} type="text" className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-stormy-blue/20 focus:bg-white transition-all outline-none" placeholder="MM / YY" maxLength="5" required />
                                         </div>
                                         <div className="space-y-3">
                                             <label className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] ml-1">Security Code</label>
-                                            <input type="text" className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-stormy-blue/20 focus:bg-white transition-all outline-none" placeholder="CVC" />
+                                            <input name="cvc" value={paymentData.cvc} onChange={handlePaymentChange} type="text" className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-stormy-blue/20 focus:bg-white transition-all outline-none" placeholder="CVC" maxLength="4" required />
                                         </div>
                                     </div>
                                 </div>
