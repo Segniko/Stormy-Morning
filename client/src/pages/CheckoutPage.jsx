@@ -16,7 +16,7 @@ const CheckoutPage = () => {
         street: '',
         city: '',
         zip: '',
-        country: 'USA'
+        country: 'Ethiopia'
     });
 
     const subtotal = cartItems ? cartItems.reduce((acc, item) => acc + (item.price || 0) * (item.qty || 0), 0) : 0;
