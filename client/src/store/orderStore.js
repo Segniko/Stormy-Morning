@@ -87,7 +87,23 @@ const useOrderStore = create((set, get) => ({
     },
 
     // Reset the success status after it has been consumed by the UI.
-    resetOrderSuccess: () => set({ success: false })
+    resetOrderSuccess: () => set({ success: false }),
+
+    // Fix legacy addresses (Admin only).
+    fixAddresses: async () => {
+        set({ loading: true, error: null });
+        try {
+            const { data } = await axios.put('/api/orders/fix-addresses');
+            set({ loading: false });
+            return data;
+        } catch (error) {
+            set({
+                loading: false,
+                error: error.response?.data?.message || error.message
+            });
+            return null;
+        }
+    }
 }));
 
 export default useOrderStore;

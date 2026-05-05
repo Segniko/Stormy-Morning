@@ -2,9 +2,13 @@ import {
     BarChart3,
     CheckCircle2,
     Clock,
+    Database,
     Filter,
+    KeyRound,
     Package,
+    RefreshCw,
     Search,
+    ShieldAlert,
     Truck,
     User as UserIcon
 } from 'lucide-react';
@@ -14,21 +18,43 @@ import useAuthStore from '../store/authStore';
 import useOrderStore from '../store/orderStore';
 
 const AdminDashboardPage = () => {
-    const { userInfo } = useAuthStore();
-    const { orders, fetchAllOrders, updateOrderStatus, loading } = useOrderStore();
+    const { userInfo, resetRequests, getResetRequests, adminResetPassword, loading: authLoading } = useAuthStore();
+    const { orders, fetchAllOrders, updateOrderStatus, fixAddresses, loading } = useOrderStore();
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
+    const [fixingAddresses, setFixingAddresses] = useState(false);
 
     useEffect(() => {
         if (!userInfo || userInfo.role !== 'admin') {
             navigate('/profile');
         } else {
             fetchAllOrders();
+            getResetRequests();
         }
-    }, [userInfo, navigate, fetchAllOrders]);
+    }, [userInfo, navigate, fetchAllOrders, getResetRequests]);
 
     const handleStatusUpdate = async (id, status) => {
         await updateOrderStatus(id, status);
+    };
+
+    const handleFixAddresses = async () => {
+        if (window.confirm('This will update all "Addis Ababa, USA" addresses to "Addis Ababa, Ethiopia". Proceed?')) {
+            setFixingAddresses(true);
+            const result = await fixAddresses();
+            if (result) {
+                alert(result.message);
+                fetchAllOrders();
+            }
+            setFixingAddresses(false);
+        }
+    };
+
+    const handleAdminReset = async (id, name) => {
+        const newPassword = window.prompt(`Enter new password for ${name}:`, 'Stormy123!');
+        if (newPassword) {
+            const result = await adminResetPassword(id, newPassword);
+            if (result) alert(result.message);
+        }
     };
 
     const filteredOrders = orders.filter(o =>
@@ -214,6 +240,81 @@ const AdminDashboardPage = () => {
                         <div className="flex space-x-2">
                             <button className="px-3 py-1 rounded-lg bg-white border border-gray-100 text-[10px] font-bold text-gray-400 disabled:opacity-50" disabled>Previous</button>
                             <button className="px-3 py-1 rounded-lg bg-white border border-gray-100 text-[10px] font-bold text-gray-400 disabled:opacity-50" disabled>Next</button>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Maintenance & Tools */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
+                    {/* Password Reset Requests */}
+                    <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm overflow-hidden">
+                        <div className="px-8 py-6 border-b border-gray-50 flex items-center justify-between">
+                            <div className="flex items-center space-x-3">
+                                <div className="bg-orange-50 text-orange-500 p-2 rounded-xl">
+                                    <ShieldAlert className="w-4 h-4" />
+                                </div>
+                                <h2 className="text-sm font-bold text-stormy-dark">Password Reset Requests</h2>
+                            </div>
+                            <span className="bg-orange-50 text-orange-500 px-3 py-1 rounded-full text-[10px] font-black">{resetRequests.length} Pending</span>
+                        </div>
+                        <div className="max-h-[400px] overflow-y-auto">
+                            {resetRequests.length === 0 ? (
+                                <div className="p-12 text-center">
+                                    <CheckCircle2 className="w-8 h-8 text-green-100 mx-auto mb-4" />
+                                    <p className="text-xs font-bold text-gray-400">All clear! No pending reset requests.</p>
+                                </div>
+                            ) : (
+                                <table className="w-full text-left">
+                                    <tbody className="divide-y divide-gray-50">
+                                        {resetRequests.map((user) => (
+                                            <tr key={user._id} className="hover:bg-gray-50">
+                                                <td className="px-8 py-4">
+                                                    <p className="text-xs font-bold text-stormy-dark">{user.name}</p>
+                                                    <p className="text-[10px] text-gray-400">{user.email}</p>
+                                                </td>
+                                                <td className="px-8 py-4 text-right">
+                                                    <button
+                                                        onClick={() => handleAdminReset(user._id, user.name)}
+                                                        className="bg-stormy-dark text-white px-4 py-2 rounded-xl text-[10px] font-bold hover:bg-stormy-blue transition-colors flex items-center ml-auto"
+                                                    >
+                                                        <KeyRound className="w-3 h-3 mr-2" />
+                                                        Reset Now
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Data Utility Tools */}
+                    <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm p-8">
+                        <div className="flex items-center space-x-3 mb-8">
+                            <div className="bg-blue-50 text-stormy-blue p-2 rounded-xl">
+                                <Database className="w-4 h-4" />
+                            </div>
+                            <h2 className="text-sm font-bold text-stormy-dark">Data Management Tools</h2>
+                        </div>
+                        
+                        <div className="space-y-4">
+                            <div className="p-6 bg-gray-50 rounded-3xl border border-gray-100">
+                                <h3 className="text-xs font-bold text-stormy-dark mb-2 flex items-center">
+                                    <RefreshCw className={`w-3 h-3 mr-2 ${fixingAddresses ? 'animate-spin' : ''}`} />
+                                    Fix Legacy Addresses
+                                </h3>
+                                <p className="text-[10px] text-gray-400 leading-relaxed mb-4">
+                                    Corrects historical data where orders were incorrectly marked as "USA" instead of "Ethiopia" for Addis Ababa locations.
+                                </p>
+                                <button
+                                    onClick={handleFixAddresses}
+                                    disabled={fixingAddresses}
+                                    className="w-full bg-white border border-gray-200 text-stormy-dark py-3 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-stormy-dark hover:text-white transition-all disabled:opacity-50"
+                                >
+                                    {fixingAddresses ? 'Updating Records...' : 'Execute Data Correction'}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

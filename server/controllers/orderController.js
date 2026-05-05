@@ -117,11 +117,27 @@ const updateOrderStatus = async (req, res, next) => {
     }
 };
 
+// Fix legacy addresses (Addis Ababa, USA -> Addis Ababa, Ethiopia)
+// PUT /api/orders/fix-addresses
+// @access Private/Admin
+const fixAddresses = async (req, res, next) => {
+    try {
+        const result = await Order.updateMany(
+            { "shippingAddress.city": "Addis Ababa", "shippingAddress.country": "USA" },
+            { $set: { "shippingAddress.country": "Ethiopia" } }
+        );
+        res.status(200).json({ message: `Updated ${result.modifiedCount} orders.` });
+    } catch (error) {
+        next(error);
+    }
+};
+
 export {
     addOrderItems,
     getAllOrders,
     getMyOrders,
     getOrderById,
-    updateOrderStatus
+    updateOrderStatus,
+    fixAddresses
 };
 

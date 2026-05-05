@@ -102,7 +102,68 @@ const getUserProfile = async (req, res, next) => {
     }
 };
 
+// Request password reset
+// POST /api/users/forgot-password
+// @access Public
+const requestPasswordReset = async (req, res, next) => {
+    try {
+        const { email } = req.body;
+        const user = await User.findOne({ email });
+
+        if (user) {
+            user.resetRequest = true;
+            await user.save();
+            res.status(200).json({ message: 'Password reset request submitted to admin.' });
+        } else {
+            res.status(404);
+            throw new Error('User not found');
+        }
+    } catch (error) {
+        next(error);
+    }
+};
+
+// Get all password reset requests
+// GET /api/users/reset-requests
+// @access Private/Admin
+const getResetRequests = async (req, res, next) => {
+    try {
+        const users = await User.find({ resetRequest: true }).select('-password');
+        res.status(200).json(users);
+    } catch (error) {
+        next(error);
+    }
+};
+
+// Admin reset user password
+// PUT /api/users/reset-password/:id
+// @access Private/Admin
+const adminResetPassword = async (req, res, next) => {
+    try {
+        const user = await User.findById(req.params.id);
+
+        if (user) {
+            // Salt and hash happen in pre-save middleware
+            user.password = req.body.password || 'Stormy123!';
+            user.resetRequest = false;
+            await user.save();
+            res.status(200).json({ message: 'Password reset successfully.' });
+        } else {
+            res.status(404);
+            throw new Error('User not found');
+        }
+    } catch (error) {
+        next(error);
+    }
+};
+
 export {
-    authUser, getUserProfile, logoutUser, registerUser
+    authUser,
+    getUserProfile,
+    logoutUser,
+    registerUser,
+    requestPasswordReset,
+    getResetRequests,
+    adminResetPassword
 };
 

@@ -33,6 +33,10 @@ const userSchema = mongoose.Schema(
                 ref: 'Product',
             },
         ],
+        resetRequest: {
+            type: Boolean,
+            default: false,
+        },
     },
     {
         timestamps: true,
