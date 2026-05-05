@@ -1,12 +1,9 @@
 import {
-    BarChart3,
     CheckCircle2,
     Clock,
-    Database,
     Filter,
     KeyRound,
     Package,
-    RefreshCw,
     Search,
     ShieldAlert,
     Truck,
@@ -19,10 +16,9 @@ import useOrderStore from '../store/orderStore';
 
 const AdminDashboardPage = () => {
     const { userInfo, resetRequests, getResetRequests, adminResetPassword, loading: authLoading } = useAuthStore();
-    const { orders, fetchAllOrders, updateOrderStatus, fixAddresses, loading } = useOrderStore();
+    const { orders, fetchAllOrders, updateOrderStatus, loading } = useOrderStore();
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
-    const [fixingAddresses, setFixingAddresses] = useState(false);
 
     useEffect(() => {
         if (!userInfo || userInfo.role !== 'admin') {
@@ -35,18 +31,6 @@ const AdminDashboardPage = () => {
 
     const handleStatusUpdate = async (id, status) => {
         await updateOrderStatus(id, status);
-    };
-
-    const handleFixAddresses = async () => {
-        if (window.confirm('This will update all "Addis Ababa, USA" addresses to "Addis Ababa, Ethiopia". Proceed?')) {
-            setFixingAddresses(true);
-            const result = await fixAddresses();
-            if (result) {
-                alert(result.message);
-                fetchAllOrders();
-            }
-            setFixingAddresses(false);
-        }
     };
 
     const handleAdminReset = async (id, name) => {
@@ -245,7 +229,7 @@ const AdminDashboardPage = () => {
                 </div>
 
                 {/* Maintenance & Tools */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
+                <div className="mt-12 max-w-2xl">
                     {/* Password Reset Requests */}
                     <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm overflow-hidden">
                         <div className="px-8 py-6 border-b border-gray-50 flex items-center justify-between">
@@ -286,35 +270,6 @@ const AdminDashboardPage = () => {
                                     </tbody>
                                 </table>
                             )}
-                        </div>
-                    </div>
-
-                    {/* Data Utility Tools */}
-                    <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm p-8">
-                        <div className="flex items-center space-x-3 mb-8">
-                            <div className="bg-blue-50 text-stormy-blue p-2 rounded-xl">
-                                <Database className="w-4 h-4" />
-                            </div>
-                            <h2 className="text-sm font-bold text-stormy-dark">Data Management Tools</h2>
-                        </div>
-                        
-                        <div className="space-y-4">
-                            <div className="p-6 bg-gray-50 rounded-3xl border border-gray-100">
-                                <h3 className="text-xs font-bold text-stormy-dark mb-2 flex items-center">
-                                    <RefreshCw className={`w-3 h-3 mr-2 ${fixingAddresses ? 'animate-spin' : ''}`} />
-                                    Fix Legacy Addresses
-                                </h3>
-                                <p className="text-[10px] text-gray-400 leading-relaxed mb-4">
-                                    Corrects historical data where orders were incorrectly marked as "USA" instead of "Ethiopia" for Addis Ababa locations.
-                                </p>
-                                <button
-                                    onClick={handleFixAddresses}
-                                    disabled={fixingAddresses}
-                                    className="w-full bg-white border border-gray-200 text-stormy-dark py-3 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-stormy-dark hover:text-white transition-all disabled:opacity-50"
-                                >
-                                    {fixingAddresses ? 'Updating Records...' : 'Execute Data Correction'}
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>
