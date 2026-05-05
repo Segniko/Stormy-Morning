@@ -29,27 +29,34 @@ const ForgotPasswordPage = () => {
                             <ArrowLeft className="w-3 h-3 mr-2" />
                             Back to Login
                         </Link>
-                        <h1 className="text-3xl font-bold text-white mb-2 tracking-tight">Reset Password</h1>
-                        <p className="text-gray-400 text-sm max-w-xs mx-auto">Enter your email and we'll notify the admin to reset your credentials.</p>
+                        <h1 className="text-3xl font-bold text-black-200 mb-2 tracking-tight">Reset Password</h1>
+                        <p className="text-black-400 text-sm max-w-xs mx-auto">Enter your email and we'll notify the admin to reset your credentials.</p>
                     </div>
 
                     {!submitted ? (
                         <form onSubmit={handleSubmit} className="space-y-6">
                             {error && (
-                                <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-xs text-center font-bold uppercase tracking-widest">
-                                    {error}
+                                <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-[10px] text-center font-bold uppercase tracking-widest">
+                                    {error === 'User not found' ? (
+                                        <>
+                                            Account doesn't exist. Please{' '}
+                                            <Link to="/register" className="underline hover:text-white transition-colors">Sign Up</Link>
+                                        </>
+                                    ) : (
+                                        error
+                                    )}
                                 </div>
                             )}
 
                             <div className="space-y-2 text-left">
-                                <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Account Email</label>
+                                <label className="text-[10px] font-bold text-black-400 uppercase tracking-widest ml-1">Account Email</label>
                                 <input
                                     type="email"
                                     required
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder="johndoe@gmail.com"
-                                    className="w-full bg-white bg-opacity-5 border border-white border-opacity-10 rounded-2xl px-6 py-4 text-sm text-white focus:ring-1 focus:ring-stormy-bright focus:bg-white/20 transition-all outline-none"
+                                    className="w-full bg-white bg-opacity-5 border border-white border-opacity-10 rounded-2xl px-6 py-4 text-sm text-black focus:ring-1 focus:ring-stormy-bright focus:bg-white/20 transition-all outline-none"
                                 />
                             </div>
 
@@ -69,7 +76,7 @@ const ForgotPasswordPage = () => {
                             </div>
                             <h2 className="text-xl font-bold text-white mb-2">Request Sent</h2>
                             <p className="text-gray-400 text-sm mb-8 leading-relaxed">
-                                Your password reset request has been sent to the administrator. 
+                                Your password reset request has been sent to the administrator.
                                 Please contact support or wait for the admin to process your request.
                             </p>
                             <Link to="/login" className="text-stormy-bright font-bold text-sm hover:underline">

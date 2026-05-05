@@ -111,8 +111,7 @@ const requestPasswordReset = async (req, res, next) => {
         const user = await User.findOne({ email });
 
         if (user) {
-            user.resetRequest = true;
-            await user.save();
+            await User.updateOne({ _id: user._id }, { resetRequest: true });
             res.status(200).json({ message: 'Password reset request submitted to admin.' });
         } else {
             res.status(404);
