@@ -16,7 +16,7 @@ import useAuthStore from '../store/authStore';
 import useOrderStore from '../store/orderStore';
 
 const AdminDashboardPage = () => {
-    const { userInfo, resetRequests, getResetRequests, adminResetPassword, loading: authLoading } = useAuthStore();
+    const { userInfo, resetRequests, getResetRequests, adminResetPassword} = useAuthStore();
     const { orders, fetchAllOrders, updateOrderStatus, loading } = useOrderStore();
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
