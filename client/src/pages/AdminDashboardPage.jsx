@@ -16,10 +16,11 @@ import useAuthStore from '../store/authStore';
 import useOrderStore from '../store/orderStore';
 
 const AdminDashboardPage = () => {
-    const { userInfo, resetRequests, getResetRequests, adminResetPassword} = useAuthStore();
+    const { userInfo, resetRequests, getResetRequests, adminResetPassword, users, getAllUsers, updateUserRole } = useAuthStore();
     const { orders, fetchAllOrders, updateOrderStatus, loading } = useOrderStore();
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
+    const [confirmModal, setConfirmModal] = useState({ isOpen: false, userId: null, currentRole: null, userName: null });
 
     useEffect(() => {
         if (!userInfo || userInfo.role !== 'admin') {
@@ -27,8 +28,9 @@ const AdminDashboardPage = () => {
         } else {
             fetchAllOrders();
             getResetRequests();
+            getAllUsers();
         }
-    }, [userInfo, navigate, fetchAllOrders, getResetRequests]);
+    }, [userInfo, navigate, fetchAllOrders, getResetRequests, getAllUsers]);
 
     const handleStatusUpdate = async (id, status) => {
         await updateOrderStatus(id, status);
@@ -40,6 +42,20 @@ const AdminDashboardPage = () => {
             const result = await adminResetPassword(id, newPassword);
             if (result) alert(result.message);
         }
+    };
+
+    const handleRoleUpdate = (id, currentRole, name) => {
+        setConfirmModal({ isOpen: true, userId: id, currentRole, userName: name });
+    };
+
+    const confirmRoleUpdate = async () => {
+        const { userId, currentRole } = confirmModal;
+        const newRole = currentRole === 'admin' ? 'user' : 'admin';
+        const result = await updateUserRole(userId, newRole);
+        if (!result) {
+            alert(useAuthStore.getState().error || "Failed to update role. Please try again.");
+        }
+        setConfirmModal({ isOpen: false, userId: null, currentRole: null, userName: null });
     };
 
     const filteredOrders = orders.filter(o =>
@@ -79,7 +95,7 @@ const AdminDashboardPage = () => {
                         </div>
                         <div>
                             <p className="text-xs font-bold text-stormy-dark">{userInfo.name}</p>
-                            <p className="text-[10px] font-black text-stormy-blue uppercase tracking-widest">Master Admin</p>
+                            <p className="text-[10px] font-black text-stormy-blue uppercase tracking-widest">{userInfo.email === 'user1234@gmail.com' ? 'Super Admin' : 'Admin'}</p>
                         </div>
                     </div>
                 </div>
@@ -230,7 +246,7 @@ const AdminDashboardPage = () => {
                 </div>
 
                 {/* Maintenance & Tools */}
-                <div className="mt-12 max-w-2xl">
+                <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
                     {/* Password Reset Requests */}
                     <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm overflow-hidden">
                         <div className="px-8 py-6 border-b border-gray-50 flex items-center justify-between">
@@ -273,8 +289,91 @@ const AdminDashboardPage = () => {
                             )}
                         </div>
                     </div>
+
+                    {/* User Management */}
+                    <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm overflow-hidden">
+                        <div className="px-8 py-6 border-b border-gray-50 flex items-center justify-between">
+                            <div className="flex items-center space-x-3">
+                                <div className="bg-blue-50 text-stormy-blue p-2 rounded-xl">
+                                    <UserIcon className="w-4 h-4" />
+                                </div>
+                                <h2 className="text-sm font-bold text-stormy-dark">User Management</h2>
+                            </div>
+                            <span className="bg-blue-50 text-stormy-blue px-3 py-1 rounded-full text-[10px] font-black">{users?.length || 0} Total</span>
+                        </div>
+                        <div className="max-h-[400px] overflow-y-auto">
+                            {(!users || users.length === 0) ? (
+                                <div className="p-12 text-center">
+                                    <UserIcon className="w-8 h-8 text-gray-200 mx-auto mb-4" />
+                                    <p className="text-xs font-bold text-gray-400">No users found.</p>
+                                </div>
+                            ) : (
+                                <table className="w-full text-left">
+                                    <tbody className="divide-y divide-gray-50">
+                                        {users.map((user) => (
+                                            <tr key={user._id} className="hover:bg-gray-50">
+                                                <td className="px-8 py-4">
+                                                    <p className="text-xs font-bold text-stormy-dark">{user.name} {user._id === userInfo._id && '(You)'}</p>
+                                                    <p className="text-[10px] text-gray-400">{user.email}</p>
+                                                </td>
+                                                <td className="px-8 py-4 text-right">
+                                                    <div className="flex items-center justify-end space-x-3">
+                                                        <span className={`px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-tight ${user.email === 'user1234@gmail.com' ? 'bg-orange-50 text-orange-600 border border-orange-200' : user.role === 'admin' ? 'bg-purple-50 text-purple-500' : 'bg-gray-100 text-gray-500'}`}>
+                                                            {user.email === 'user1234@gmail.com' ? 'Super Admin' : user.role}
+                                                        </span>
+                                                        {user._id !== userInfo._id && user.email !== 'user1234@gmail.com' && (
+                                                            <button
+                                                                onClick={() => handleRoleUpdate(user._id, user.role, user.name)}
+                                                                className="text-[10px] font-bold text-stormy-blue hover:text-stormy-dark transition-colors bg-blue-50/50 px-3 py-1.5 rounded-full"
+                                                            >
+                                                                Toggle Role
+                                                            </button>
+                                                        )}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            )}
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            {/* Custom Confirmation Modal */}
+            {confirmModal.isOpen && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-stormy-dark/40 backdrop-blur-sm animate-in fade-in duration-200">
+                    <div className="bg-white rounded-[2rem] p-8 max-w-sm w-full shadow-2xl scale-in-center border border-gray-100">
+                        <div className="flex items-center space-x-4 mb-6">
+                            <div className="w-12 h-12 rounded-full bg-orange-50 text-orange-500 flex items-center justify-center flex-shrink-0">
+                                <ShieldAlert className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-black text-stormy-dark">Confirm Action</h3>
+                                <p className="text-xs text-gray-500 font-medium">Change privileges for {confirmModal.userName}</p>
+                            </div>
+                        </div>
+                        <p className="text-sm text-gray-600 mb-8 leading-relaxed">
+                            Are you sure you want to change this user's role to <span className="font-black text-stormy-dark uppercase text-xs px-2 py-1 bg-gray-100 rounded-md mx-1">{confirmModal.currentRole === 'admin' ? 'user' : 'admin'}</span>?
+                        </p>
+                        <div className="flex space-x-3">
+                            <button
+                                onClick={() => setConfirmModal({ isOpen: false, userId: null, currentRole: null, userName: null })}
+                                className="flex-1 py-3.5 px-4 bg-gray-50 text-gray-500 font-bold rounded-2xl text-sm hover:bg-gray-100 transition-colors"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onClick={confirmRoleUpdate}
+                                className="flex-1 py-3.5 px-4 bg-stormy-dark text-white font-bold rounded-2xl text-sm hover:bg-stormy-blue transition-colors shadow-lg shadow-stormy-dark/20"
+                            >
+                                Confirm Update
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

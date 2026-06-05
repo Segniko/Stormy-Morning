@@ -156,6 +156,45 @@ const adminResetPassword = async (req, res, next) => {
     }
 };
 
+// Get all users
+// GET /api/users
+// @access Private/Admin
+const getAllUsers = async (req, res, next) => {
+    try {
+        const users = await User.find({}).select('-password');
+        res.status(200).json(users);
+    } catch (error) {
+        next(error);
+    }
+};
+
+// Update user role
+// PUT /api/users/:id/role
+// @access Private/Admin
+const updateUserRole = async (req, res) => {
+    try {
+        const userToUpdate = await User.findById(req.params.id);
+        
+        if (!userToUpdate) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        if (userToUpdate.email === 'user1234@gmail.com' && req.body.role !== 'admin') {
+            return res.status(403).json({ message: 'Cannot demote the superadmin.' });
+        }
+
+        const updatedUser = await User.findByIdAndUpdate(
+            req.params.id,
+            { role: req.body.role },
+            { new: true }
+        ).select('-password');
+
+        res.status(200).json(updatedUser);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 export {
     authUser,
     getUserProfile,
@@ -163,6 +202,8 @@ export {
     registerUser,
     requestPasswordReset,
     getResetRequests,
-    adminResetPassword
+    adminResetPassword,
+    getAllUsers,
+    updateUserRole
 };
 

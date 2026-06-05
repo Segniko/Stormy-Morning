@@ -1,4 +1,4 @@
-import { Menu, Search, ShoppingBag, User, X } from 'lucide-react';
+import { Menu, Search, ShoppingBag, User, X, ShieldAlert } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuthStore from '../store/authStore';
@@ -66,6 +66,11 @@ const Navbar = () => {
 
                         {/* Action Icons */}
                         <div className="flex items-center space-x-4 md:space-x-6">
+                            {userInfo?.role === 'admin' && (
+                                <Link to="/@admin-portal" title="Admin Portal" className="p-2.5 bg-red-50 text-red-500 rounded-full hover:bg-red-500 hover:text-white transition-all shadow-sm">
+                                    <ShieldAlert className="w-5 h-5" />
+                                </Link>
+                            )}
                             <Link to="/cart" className="relative p-2.5 bg-gray-50 rounded-full text-gray-500 hover:bg-stormy-blue hover:text-white transition-all shadow-sm">
                                 <ShoppingBag className="w-5 h-5" />
                                 {cartCount > 0 && (
